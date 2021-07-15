@@ -25,7 +25,6 @@ public class Juego extends Game {
         assetManager=new AssetManager();
         assetManager.load("res/packed/textures.atlas", TextureAtlas.class);
         assetManager.finishLoading();
-        //screen = new MainMenuScreen(this);
         this.setScreen(new MainMenuScreen(this));
 
     }

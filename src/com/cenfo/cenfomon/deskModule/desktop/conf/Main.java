@@ -9,6 +9,7 @@ public class Main {
         config.height = Juego.HEIGHT;
         config.width = Juego.WIDTH;
         config.vSyncEnabled=true;
+        config.resizable = false;
         new LwjglApplication(new Juego(), config);
     }
 }

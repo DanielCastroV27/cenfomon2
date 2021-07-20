@@ -6,19 +6,20 @@ import com.badlogic.gdx.math.Interpolation;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 
-public class Actor {
+public class Actor implements YSortable {
     private TileMap map;
     private int x;
     private int y;
     private DIRECCION facingDirection;
+    private boolean visible = true;
 
-    private float worldX,worldY;
+    private float worldX, worldY;
 
-    private int srcX,srcY;
-    private int destinationX,destinationY;
+    private int srcX, srcY;
+    private int destinationX, destinationY;
 
     private float timerAnimacion;
-    private float ANIM_TIME=0.3f;
+    private float ANIM_TIME = 0.3f;
 
     private float timerCaminar;
     private boolean moveRequestThisFrame;
@@ -35,74 +36,79 @@ public class Actor {
         return worldY;
     }
 
-    public enum ACTOR_STATE{
+    public enum ACTOR_STATE {
         WALKING,
         STANDING,
         ;
     }
-    public void Actualizar(float delta){
-        if(state==ACTOR_STATE.WALKING){
-            timerAnimacion+=delta;
-            timerCaminar+=delta;
-            worldX= Interpolation.pow2.apply(srcX,destinationX,timerAnimacion/ANIM_TIME);
-            worldY=Interpolation.pow2.apply(srcY,destinationY,timerAnimacion/ANIM_TIME);
-            if(timerAnimacion>ANIM_TIME){
-                float leftOverTime=timerAnimacion-ANIM_TIME;
-                timerCaminar-=leftOverTime;
+
+    public void Actualizar(float delta) {
+        if (state == ACTOR_STATE.WALKING) {
+            timerAnimacion += delta;
+            timerCaminar += delta;
+            worldX = Interpolation.pow2.apply(srcX, destinationX, timerAnimacion / ANIM_TIME);
+            worldY = Interpolation.pow2.apply(srcY, destinationY, timerAnimacion / ANIM_TIME);
+            if (timerAnimacion > ANIM_TIME) {
+                float leftOverTime = timerAnimacion - ANIM_TIME;
                 FinalizarMovimiento();
-                if(moveRequestThisFrame){
-                    move(facingDirection);
-                }else{
-                    timerCaminar=0f;
+                if (moveRequestThisFrame) {
+                    timerAnimacion += leftOverTime;
+                    worldX = Interpolation.linear.apply(srcX, destinationX, timerAnimacion / ANIM_TIME);
+                    worldY = Interpolation.linear.apply(srcY, destinationY, timerAnimacion / ANIM_TIME);
+                } else {
+                    timerCaminar = 0f;
                 }
             }
         }
-        moveRequestThisFrame=false;
+        moveRequestThisFrame = false;
     }
 
     public int getX() {
         return x;
     }
-    public boolean move( DIRECCION dir){
-        if(state==ACTOR_STATE.WALKING){
-            if (facingDirection==dir){
-                moveRequestThisFrame=true;
+
+    public boolean move(DIRECCION dir) {
+        if (state == ACTOR_STATE.WALKING) {
+            if (facingDirection == dir) {
+                moveRequestThisFrame = true;
             }
             return false;
         }
-        if(x+ dir.getDx()>=map.getWidth()||x+dir.getDx()<0||y+dir.getDy()>=map.getHeight()||y+dir.getDy()<0){
+        if (x + dir.getDx() >= map.getWidth() || x + dir.getDx() < 0 || y + dir.getDy() >= map.getHeight() || y + dir.getDy() < 0) {
             return false;
         }
-        if (map.getTile(x+dir.getDx(),y+ dir.getDy()).getActor()!=null){
+        if (map.getTile(x + dir.getDx(), y + dir.getDy()).getActor() != null) {
             return false;
         }
         InicializarMovimiento(dir);
-        map.getTile(x,y).setActor(null);
-        x+=dir.getDx();
-        y+=dir.getDy();
-        map.getTile(x,y).setActor(this);
+        map.getTile(x, y).setActor(null);
+        x += dir.getDx();
+        y += dir.getDy();
+        map.getTile(x, y).setActor(this);
         return true;
     }
-    private void InicializarMovimiento(DIRECCION dir){
-        this.facingDirection=dir;
-        this.srcX=x;
-        this.srcY=y;
-        this.destinationX=x+dir.getDx();
-        this.destinationY=y+dir.getDy();
-        this.worldX=x;
-        this.worldY=y;
-        timerAnimacion=0f;
-        state=ACTOR_STATE.WALKING;
+
+    private void InicializarMovimiento(DIRECCION dir) {
+        this.facingDirection = dir;
+        this.srcX = x;
+        this.srcY = y;
+        this.destinationX = x + dir.getDx();
+        this.destinationY = y + dir.getDy();
+        this.worldX = x;
+        this.worldY = y;
+        timerAnimacion = 0f;
+        state = ACTOR_STATE.WALKING;
 
     }
-    private void FinalizarMovimiento(){
-        state=ACTOR_STATE.STANDING;
-        this.worldY=destinationY;
-        this.worldX=destinationX;
-        this.srcY=0;
-        this.srcX=0;
-        this.destinationX=0;
-        this.destinationY=0;
+
+    private void FinalizarMovimiento() {
+        state = ACTOR_STATE.STANDING;
+        this.worldY = destinationY;
+        this.worldX = destinationX;
+        this.srcY = 0;
+        this.srcX = 0;
+        this.destinationX = 0;
+        this.destinationY = 0;
 
     }
 
@@ -119,24 +125,39 @@ public class Actor {
         this.y = y;
     }
 
-    public Actor(TileMap map,int x, int y,AnimationSet animaciones) {
-        this.map=map;
+    public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
+        this.map = map;
         this.x = x;
         this.y = y;
-        this.worldX=x;
-        this.worldY=y;
-        this.animacionesActor=animaciones;
-        map.getTile(x,y).setActor(this);
-        this.state=ACTOR_STATE.STANDING;
-        this.facingDirection=DIRECCION.SUR;
+        this.worldX = x;
+        this.worldY = y;
+        this.animacionesActor = animaciones;
+        map.getTile(x, y).setActor(this);
+        this.state = ACTOR_STATE.STANDING;
+        this.facingDirection = DIRECCION.SUR;
     }
-    public TextureRegion getSprite(){
-        if (state==ACTOR_STATE.WALKING){
-            return  this.animacionesActor.getWalking(this.facingDirection).getKeyFrame(this.timerCaminar);
-        }else if(state==ACTOR_STATE.STANDING){
-            return  animacionesActor.getStanding(facingDirection);
+
+    public TextureRegion getSprite() {
+        if (state == ACTOR_STATE.WALKING) {
+            return this.animacionesActor.getWalking(this.facingDirection).getKeyFrame(this.timerCaminar);
+        } else if (state == ACTOR_STATE.STANDING) {
+            return animacionesActor.getStanding(facingDirection);
         }
         return animacionesActor.getStanding(DIRECCION.SUR);
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    @Override
+    public float getSizeX() {
+        return 1;
+    }
+
+    @Override
+    public float getSizeY() {
+        return 1.5f;
     }
 }
 

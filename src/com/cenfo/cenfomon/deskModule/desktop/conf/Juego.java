@@ -12,12 +12,11 @@ import com.cenfo.cenfomon.deskModule.desktop.pantallas.MainMenuScreen;
 
 
 public class Juego extends Game {
-    private GameScreen screen;
     private AssetManager assetManager;
     public SpriteBatch batch;
 
-    public static final int WIDTH = 600;
-    public static final int HEIGHT = 400;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 800;
 
     @Override
     public void create() {

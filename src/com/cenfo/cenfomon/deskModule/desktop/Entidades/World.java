@@ -23,7 +23,7 @@ public class World {
 
     public void addObject(WorldObject worldObject) {
         for (GridPoint2 o : worldObject.getTiles()) {
-            map.getTile(worldObject.getX() + o.x, worldObject.getY() + o.y).setWorldObject(worldObject);
+            map.getTile(worldObject.getX(), worldObject.getY()).setWorldObject(worldObject);
         }
         this.worldObjects.add(worldObject);
     }

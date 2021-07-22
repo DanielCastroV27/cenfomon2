@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 
+import com.badlogic.gdx.math.GridPoint2;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.cenfo.cenfomon.deskModule.desktop.Controllers.ControllerJugador;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.*;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -13,10 +16,11 @@ import com.cenfo.cenfomon.deskModule.desktop.conf.Settings;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.WorldRenderer;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
+import java.awt.geom.Rectangle2D;
+import java.util.List;
+
 
 public class GameScreen extends AbstractScreen {
-    private Texture grass1;
-    private Texture grass2;
     private SpriteBatch batch;
     private Actor player;
     private ControllerJugador playerController;
@@ -28,8 +32,6 @@ public class GameScreen extends AbstractScreen {
     public GameScreen(Juego j) {
         super(j);
         this.game = j;
-        grass1 = new Texture("res/un_packed/grass1.png");
-        grass2 = new Texture("res/un_packed/grass2.png");
         batch = new SpriteBatch();
 
         TextureAtlas atlas = j.getAssetManager().get("res/packed/textures.atlas", TextureAtlas.class);
@@ -60,13 +62,15 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         this.playerController.actualizarMovimiento(delta);
-
         this.camara.Actualizar(player.getWorldX() + 0.5f, player.getWorldY() + 0.5f);
+
         this.world.update(delta);
 
         this.batch.begin();
         this.worldRenderer.render(camara);
         this.batch.end();
+
+        this.actorEnterHouse();
     }
 
     @Override
@@ -92,5 +96,14 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void dispose() {
 
+    }
+
+    private void actorEnterHouse() {
+        WorldObject w = this.world.getMap().getTile(5, 5).getWorldObject();
+        Rectangle2D bounds = new Rectangle2D.Float(w.getX(), w.getY(), w.getSizeX(), w.getSizeY());
+
+        if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
+            System.out.println("Works!");
+        }
     }
 }

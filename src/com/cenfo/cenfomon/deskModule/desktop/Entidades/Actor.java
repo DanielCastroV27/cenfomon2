@@ -36,6 +36,14 @@ public class Actor implements YSortable {
         return worldY;
     }
 
+    public void setWorldX(float worldX) {
+        this.worldX = worldX;
+    }
+
+    public void setWorldY(float worldY) {
+        this.worldY = worldY;
+    }
+
     public enum ACTOR_STATE {
         WALKING,
         STANDING,
@@ -112,6 +120,13 @@ public class Actor implements YSortable {
 
     }
 
+    public TileMap getMap() {
+        return map;
+    }
+
+    public void setMap(TileMap map) {
+        this.map = map;
+    }
 
     public void setX(int x) {
         this.x = x;

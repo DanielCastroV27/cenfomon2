@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class WorldRenderer {
+public class GameScreenRenderer {
     private World world;
     private AssetManager assetManager;
     private Texture grass1;
@@ -26,7 +26,7 @@ public class WorldRenderer {
     private TextureAtlas houseAtlas;
     private Sprite houseRegion;
 
-    public WorldRenderer(AssetManager assetManager, World world, SpriteBatch batch) {
+    public GameScreenRenderer(AssetManager assetManager, World world, SpriteBatch batch) {
         this.assetManager = assetManager;
         this.world = world;
         this.batch = batch;

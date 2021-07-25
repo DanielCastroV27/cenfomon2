@@ -1,23 +1,18 @@
 package com.cenfo.cenfomon.deskModule.desktop.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 
-import com.badlogic.gdx.math.GridPoint2;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.cenfo.cenfomon.deskModule.desktop.Controllers.ControllerJugador;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.*;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 
+import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
-import com.cenfo.cenfomon.deskModule.desktop.conf.Settings;
-import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.WorldRenderer;
+import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.GameScreenRenderer;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 
 
 public class GameScreen extends AbstractScreen {
@@ -26,13 +21,14 @@ public class GameScreen extends AbstractScreen {
     private ControllerJugador playerController;
     private Camara camara;
     private World world;
-    private WorldRenderer worldRenderer;
+    private GameScreenRenderer gameScreenRenderer;
     private Juego game;
+    private Singleton singleton;
 
     public GameScreen(Juego j) {
         super(j);
         this.game = j;
-        batch = new SpriteBatch();
+        this.batch = j.batch;
 
         TextureAtlas atlas = j.getAssetManager().get("res/packed/textures.atlas", TextureAtlas.class);
         AnimationSet animations = new AnimationSet(
@@ -51,7 +47,9 @@ public class GameScreen extends AbstractScreen {
         this.player = new Actor(this.world.getMap(), 2, 2, animations);
         this.world.addActor(this.player);
         this.playerController = new ControllerJugador(player);
-        this.worldRenderer = new WorldRenderer(j.getAssetManager(), world, batch);
+        this.gameScreenRenderer = new GameScreenRenderer(j.getAssetManager(), world, batch);
+        this.singleton = Singleton.getInstance();
+        this.singleton.setCurrentPlayer(this.player);
     }
 
     @Override
@@ -67,7 +65,7 @@ public class GameScreen extends AbstractScreen {
         this.world.update(delta);
 
         this.batch.begin();
-        this.worldRenderer.render(camara);
+        this.gameScreenRenderer.render(camara);
         this.batch.end();
 
         this.actorEnterHouse();
@@ -103,7 +101,8 @@ public class GameScreen extends AbstractScreen {
         Rectangle2D bounds = new Rectangle2D.Float(w.getX(), w.getY(), w.getSizeX(), w.getSizeY());
 
         if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
-            System.out.println("Works!");
+            this.singleton.setPreviousScreen(this);
+            this.game.setScreen(new OfficeScreen(this.game));
         }
     }
 }

@@ -8,6 +8,7 @@ public class Singleton {
     private static Singleton singleton;
     private Actor currentPlayer;
     private AbstractScreen previousScreen;
+    private boolean actorEnteredOffice;
 
 
     public static Singleton getInstance() {
@@ -16,6 +17,10 @@ public class Singleton {
         }
 
         return singleton;
+    }
+
+    private Singleton() {
+        actorEnteredOffice = false;
     }
 
     public Actor getCurrentPlayer() {
@@ -32,5 +37,13 @@ public class Singleton {
 
     public void setPreviousScreen(AbstractScreen previousScreen) {
         this.previousScreen = previousScreen;
+    }
+
+    public boolean isActorEnteredOffice() {
+        return actorEnteredOffice;
+    }
+
+    public void setActorEnteredOffice(boolean actorEnteredOffice) {
+        this.actorEnteredOffice = actorEnteredOffice;
     }
 }

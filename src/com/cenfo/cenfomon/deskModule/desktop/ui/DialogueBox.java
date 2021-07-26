@@ -10,16 +10,10 @@ public class DialogueBox extends Table {
     private String targetText = "";
     private float animTimer = 0f;
     private float animationTotalTime = 0f;
-    private float TIME_PER_CHARACTER = 0.10f;
+    private float TIME_PER_CHARACTER = 0.05f;
     private STATE state = STATE.IDLE;
 
     private Label textLabel;
-
-    private enum STATE {
-        ANIMATING,
-        IDLE,
-        ;
-    }
 
     public DialogueBox(Skin skin) {
         super(skin);

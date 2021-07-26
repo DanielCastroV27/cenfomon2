@@ -3,6 +3,7 @@ package com.cenfo.cenfomon.deskModule.desktop.Entidades;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import com.badlogic.gdx.math.Interpolation;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 
@@ -25,6 +26,7 @@ public class Actor implements YSortable {
     private boolean moveRequestThisFrame;
 
     private ACTOR_STATE state;
+    private AbstractCenfomon firstCenfomon;
 
     private AnimationSet animacionesActor;
 
@@ -118,6 +120,14 @@ public class Actor implements YSortable {
         this.destinationX = 0;
         this.destinationY = 0;
 
+    }
+
+    public AbstractCenfomon getFirstCenfomon() {
+        return firstCenfomon;
+    }
+
+    public void setFirstCenfomon(AbstractCenfomon firstCenfomon) {
+        this.firstCenfomon = firstCenfomon;
     }
 
     public TileMap getMap() {

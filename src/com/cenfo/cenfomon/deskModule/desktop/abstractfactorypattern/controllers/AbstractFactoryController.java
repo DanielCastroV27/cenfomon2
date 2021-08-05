@@ -11,12 +11,12 @@ public class AbstractFactoryController {
         AbstractCenfomon cenfomon = null;
 
         switch (option.toLowerCase()) {
-            case "Bulbasaur":
-                cenfomon = factory.create(CenfomonList.BULBASAUR);
+            case "Osotias":
+                cenfomon = factory.create(CenfomonList.OSOTIAS);
                 break;
 
-            case "Slowpoke":
-                cenfomon = factory.create(CenfomonList.SLOWPOKE);
+            case "Fenixluna":
+                cenfomon = factory.create(CenfomonList.FENIXLUNA);
                 break;
         }
 

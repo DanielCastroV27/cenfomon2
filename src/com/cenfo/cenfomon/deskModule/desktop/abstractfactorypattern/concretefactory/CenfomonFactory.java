@@ -12,11 +12,11 @@ public class CenfomonFactory implements CenfomonAbstractFactory {
         AbstractCenfomon cenfomon = null;
 
         switch (cenfomonType) {
-            case SLOWPOKE:
+            case FENIXLUNA:
                 cenfomon = new Slowpoke();
                 break;
 
-            case BULBASAUR:
+            case OSOTIAS:
                 cenfomon = new Bulbasaur();
                 break;
         }

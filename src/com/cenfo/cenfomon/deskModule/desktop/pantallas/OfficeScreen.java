@@ -160,8 +160,8 @@ public class OfficeScreen extends AbstractScreen {
 
             dialogueController.makeLinear(node1, node2.getID());
             dialogueController.makeLinear(node2, node3.getID());
-            dialogueController.addChoice(node3, "Bulbasaur", node4.getID());
-            dialogueController.addChoice(node3, "Slowpoke", node4.getID());
+            dialogueController.addChoice(node3, "Osotias", node4.getID());
+            dialogueController.addChoice(node3, "Fenixluna", node4.getID());
             dialogueController.makeLinear(node4, node5.getID());
             dialogueController.addEndNode(node5);
         } else {

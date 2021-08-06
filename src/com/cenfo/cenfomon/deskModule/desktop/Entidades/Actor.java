@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Interpolation;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Actor implements YSortable {
     //World required attributes
@@ -27,6 +30,7 @@ public class Actor implements YSortable {
     //Gameplay attributes
     private AbstractCenfomon firstCenfomon;
     private int coins = 1200;
+    private List<AbstractCenfomon> cenfomonList;
 
     public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
         this.map = map;
@@ -39,6 +43,7 @@ public class Actor implements YSortable {
         this.state = ACTOR_STATE.STANDING;
         this.facingDirection = DIRECCION.SUR;
         this.firstCenfomon = null;
+        this.cenfomonList = new ArrayList<>(3);
     }
 
     public float getWorldX() {
@@ -172,6 +177,14 @@ public class Actor implements YSortable {
 
     public boolean isVisible() {
         return visible;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 
     @Override

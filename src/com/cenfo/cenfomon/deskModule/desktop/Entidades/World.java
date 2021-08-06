@@ -9,6 +9,7 @@ public class World {
     private TileMap map;
     private List<Actor> actors;
     private List<WorldObject> worldObjects;
+    private Actor mainActor;
 
     public World(int width, int height) {
         this.map = new TileMap(width, height);
@@ -44,5 +45,13 @@ public class World {
 
     public void setMap(TileMap map) {
         this.map = map;
+    }
+
+    public Actor getMainActor() {
+        return mainActor;
+    }
+
+    public void setMainActor(Actor mainActor) {
+        this.mainActor = mainActor;
     }
 }

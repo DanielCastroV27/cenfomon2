@@ -46,6 +46,7 @@ public class GameScreen extends AbstractScreen {
         this.world = new World(20, 20);
         this.player = new Actor(this.world.getMap(), 2, 2, animations);
         this.world.addActor(this.player);
+        this.world.setMainActor(this.player);
         this.playerController = new ControllerJugador(player);
         this.gameScreenRenderer = new GameScreenRenderer(j.getAssetManager(), world, batch);
         this.singleton = Singleton.getInstance();
@@ -103,6 +104,7 @@ public class GameScreen extends AbstractScreen {
         if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
             this.singleton.setPreviousScreen(this);
             this.game.setScreen(new OfficeScreen(this.game));
+            this.player.setCoins(2000);
         }
     }
 }

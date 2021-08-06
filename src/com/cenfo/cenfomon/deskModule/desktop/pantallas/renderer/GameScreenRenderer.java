@@ -1,11 +1,9 @@
 package com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.GridPoint2;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.*;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
@@ -25,6 +23,8 @@ public class GameScreenRenderer {
     private SpriteBatch batch;
     private TextureAtlas houseAtlas;
     private Sprite houseRegion;
+    private Sprite coinSprite;
+   private BitmapFont coinCounterFont;
 
     public GameScreenRenderer(AssetManager assetManager, World world, SpriteBatch batch) {
         this.assetManager = assetManager;
@@ -34,6 +34,8 @@ public class GameScreenRenderer {
         this.grass2 = new Texture("res/un_packed/grass2.png");
         this.houseAtlas = this.assetManager.get("res/packed/textures.atlas", TextureAtlas.class);
         this.houseRegion = houseAtlas.createSprite("small_house");
+        this.coinSprite = new Sprite(new Texture("res/un_packed/coin.png"));
+        this.coinCounterFont = new BitmapFont();
     }
 
     public void render(Camara camera) {
@@ -89,8 +91,9 @@ public class GameScreenRenderer {
                     Settings.SCALED_TILE_SIZE * loc.getSizeY());
         }
 
-        this.addHouse();
-        this.addTrees(camera);
+        addHouse();
+        addTrees(camera);
+        addCoinCounter();
     }
 
 
@@ -136,6 +139,13 @@ public class GameScreenRenderer {
     private void addHouse() {
         GridPoint2 gridPoint2 = new GridPoint2(5, 5);
         WorldObject worldObject = new WorldObject(5, 5, false, this.houseRegion, 5, 5, new GridPoint2[]{gridPoint2});
-        this.world.addObject(worldObject);
+        world.addObject(worldObject);
+    }
+
+    private void addCoinCounter() {
+        batch.draw(coinSprite, 50, (Juego.HEIGHT - 60), 32, 32);
+
+        coinCounterFont.setColor(Color.YELLOW);
+        coinCounterFont.draw(batch, String.valueOf(world.getMainActor().getCoins()), 100, (Juego.HEIGHT - 40));
     }
 }

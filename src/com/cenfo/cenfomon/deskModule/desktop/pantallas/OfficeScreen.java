@@ -22,6 +22,7 @@ import com.cenfo.cenfomon.deskModule.desktop.ui.OptionBox;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.OfficeScreenRenderer;
+
 import java.awt.geom.Rectangle2D;
 
 public class OfficeScreen extends AbstractScreen {
@@ -122,7 +123,7 @@ public class OfficeScreen extends AbstractScreen {
 
     private void initUI() {
         uiStage = new Stage(new ScreenViewport());
-        uiStage.getViewport().update(Gdx.graphics.getWidth()/uiScale, Gdx.graphics.getHeight()/uiScale, true);
+        uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
 
         tableRoot = new Table();
         tableRoot.setFillParent(true);
@@ -149,7 +150,7 @@ public class OfficeScreen extends AbstractScreen {
     }
 
     private void initDialogues() {
-        if(!singleton.isActorEnteredOffice()) {
+        if (!singleton.isActorEnteredOffice()) {
             singleton.setActorEnteredOffice(true);
             DialogueNode node1 = new DialogueNode("Hola, Cadete!\nBienvenido al planeta Cronos.", 0);
             DialogueNode node2 = new DialogueNode("Encontraras que la flora y la fauna son bastante\npeculiares por aca.", 1);
@@ -174,14 +175,17 @@ public class OfficeScreen extends AbstractScreen {
     private void actorLeavesDoor() {
         WorldObject w = world.getMap().getTile(8, 0).getWorldObject();
         Rectangle2D bounds = new Rectangle2D.Float(w.getX(), w.getY(), w.getSizeX(), w.getSizeY());
+        Screen screen = singleton.getPreviousScreen();
 
-        if (bounds.contains(player.getWorldX(), player.getWorldY())) {
-            Screen screen = singleton.getPreviousScreen();
+        if (bounds.contains(player.getWorldX(), player.getWorldY()) && player.getFirstCenfomon() == null) {
             player.setFirstCenfomon(factoryController.create(dialogueController.getSelectedOption()));
             singleton.setPreviousScreen(this);
             game.setScreen(screen);
+        } else if (bounds.contains(player.getWorldX(), player.getWorldY()) && player.getFirstCenfomon() != null) {
+            singleton.setPreviousScreen(this);
+            game.setScreen(screen);
         }
-
     }
+
 
 }

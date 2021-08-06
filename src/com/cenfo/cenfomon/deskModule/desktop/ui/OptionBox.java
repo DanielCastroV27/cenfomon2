@@ -90,6 +90,9 @@ public class OptionBox extends Table {
     }
 
     public String getSelectedOption() {
+        if(selectedOption == null) {
+            selectedOption = options.get(0).getText().toString();
+        }
         return selectedOption;
     }
 

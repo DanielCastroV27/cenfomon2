@@ -8,27 +8,38 @@ import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 
 public class Actor implements YSortable {
+    //World required attributes
     private TileMap map;
     private int x;
     private int y;
     private DIRECCION facingDirection;
     private boolean visible = true;
-
     private float worldX, worldY;
-
     private int srcX, srcY;
     private int destinationX, destinationY;
-
     private float timerAnimacion;
     private float ANIM_TIME = 0.3f;
-
     private float timerCaminar;
     private boolean moveRequestThisFrame;
-
-    private ACTOR_STATE state;
-    private AbstractCenfomon firstCenfomon;
-
     private AnimationSet animacionesActor;
+    private ACTOR_STATE state;
+
+    //Gameplay attributes
+    private AbstractCenfomon firstCenfomon;
+    private int coins = 1200;
+
+    public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
+        this.map = map;
+        this.x = x;
+        this.y = y;
+        this.worldX = x;
+        this.worldY = y;
+        this.animacionesActor = animaciones;
+        map.getTile(x, y).setActor(this);
+        this.state = ACTOR_STATE.STANDING;
+        this.facingDirection = DIRECCION.SUR;
+        this.firstCenfomon = null;
+    }
 
     public float getWorldX() {
         return worldX;
@@ -148,18 +159,6 @@ public class Actor implements YSortable {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
-        this.map = map;
-        this.x = x;
-        this.y = y;
-        this.worldX = x;
-        this.worldY = y;
-        this.animacionesActor = animaciones;
-        map.getTile(x, y).setActor(this);
-        this.state = ACTOR_STATE.STANDING;
-        this.facingDirection = DIRECCION.SUR;
     }
 
     public TextureRegion getSprite() {

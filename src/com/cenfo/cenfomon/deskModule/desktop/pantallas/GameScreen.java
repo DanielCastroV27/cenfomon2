@@ -60,13 +60,17 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
         this.playerController.actualizarMovimiento(delta);
-        this.camara.Actualizar(player.getWorldX() + 0.5f, player.getWorldY() + 0.5f);
+        this.camara.Actualizar(player.getWorldX() + -5.0f, player.getWorldY() + -5.0f);
 
         this.world.update(delta);
 
         this.batch.begin();
         this.gameScreenRenderer.render(camara);
         this.batch.end();
+
+        if(player.getFirstCenfomon() != null) {
+            System.out.println(player.getFirstCenfomon().getName());
+        }
 
         this.actorEnterHouse();
     }

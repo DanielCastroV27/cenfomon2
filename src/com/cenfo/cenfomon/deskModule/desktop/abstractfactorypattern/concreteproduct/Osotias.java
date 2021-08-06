@@ -2,9 +2,9 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretepro
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 
-public class Slowpoke implements AbstractCenfomon {
+public class Osotias implements AbstractCenfomon {
     @Override
     public String getName() {
-        return "Slowpoke";
+        return "Osotias";
     }
 }

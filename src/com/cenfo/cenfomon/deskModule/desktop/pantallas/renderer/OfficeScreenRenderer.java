@@ -87,7 +87,7 @@ public class OfficeScreenRenderer {
     }
 
     private void addTeacher() {
-        Sprite teacherSprite = new Sprite(new Texture("res/un_packed/brendan_stand_south.png"));
+        Sprite teacherSprite = new Sprite(new Texture("res/un_packed/fonseca-no-bg.png"));
         GridPoint2 gridPoint2 = new GridPoint2(1, 8);
         WorldObject worldObject = new WorldObject(1, 8, false, teacherSprite, 1f, 1.6f, new GridPoint2[]{gridPoint2});
         this.world.addObject(worldObject);

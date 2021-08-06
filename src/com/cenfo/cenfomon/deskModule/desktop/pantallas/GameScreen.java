@@ -68,10 +68,6 @@ public class GameScreen extends AbstractScreen {
         this.gameScreenRenderer.render(camara);
         this.batch.end();
 
-        if(player.getFirstCenfomon() != null) {
-            System.out.println(player.getFirstCenfomon().getName());
-        }
-
         this.actorEnterHouse();
     }
 

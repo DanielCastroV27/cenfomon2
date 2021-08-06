@@ -104,7 +104,6 @@ public class GameScreen extends AbstractScreen {
         if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
             this.singleton.setPreviousScreen(this);
             this.game.setScreen(new OfficeScreen(this.game));
-            this.player.setCoins(2000);
         }
     }
 }

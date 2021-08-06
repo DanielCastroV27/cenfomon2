@@ -5,8 +5,6 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.cenfo.cenfomon.deskModule.desktop.Controllers.ControllerJugador;
@@ -15,10 +13,7 @@ import com.cenfo.cenfomon.deskModule.desktop.Entidades.Actor;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.World;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.WorldObject;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.controllers.AbstractFactoryController;
-import com.cenfo.cenfomon.deskModule.desktop.dialogues.Dialogue;
 import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
-import com.cenfo.cenfomon.deskModule.desktop.ui.DialogueBox;
-import com.cenfo.cenfomon.deskModule.desktop.ui.OptionBox;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.OfficeScreenRenderer;
@@ -39,12 +34,8 @@ public class OfficeScreen extends AbstractScreen {
     private AbstractFactoryController factoryController;
 
     private Stage uiStage;
-    private Table tableRoot;
     private int uiScale = 2;
     private Viewport gameViewport;
-    private DialogueBox dialogueBox;
-    private OptionBox optionBox;
-    private Dialogue dialogue;
 
     public OfficeScreen(Juego j) {
         super(j);
@@ -59,11 +50,14 @@ public class OfficeScreen extends AbstractScreen {
 
         officeScreenRenderer = new OfficeScreenRenderer(j.getAssetManager(), this.world, this.batch);
 
-        this.initUI();
-
-        dialogue = new Dialogue();
         playerController = new ControllerJugador(player);
-        dialogueController = new DialogueController(dialogueBox, optionBox, dialogue);
+
+        //UI init
+        dialogueController = new DialogueController(j.getSkin());
+        uiStage = new Stage(new ScreenViewport());
+        uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
+        uiStage.addActor(dialogueController.getTableRoot());
+
         factoryController = new AbstractFactoryController();
 
         inputMultiplexer = new InputMultiplexer();
@@ -119,34 +113,6 @@ public class OfficeScreen extends AbstractScreen {
     @Override
     public void dispose() {
 
-    }
-
-    private void initUI() {
-        uiStage = new Stage(new ScreenViewport());
-        uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
-
-        tableRoot = new Table();
-        tableRoot.setFillParent(true);
-        uiStage.addActor(tableRoot);
-
-        dialogueBox = new DialogueBox(game.getSkin());
-        dialogueBox.setVisible(false);
-
-        optionBox = new OptionBox(game.getSkin());
-        optionBox.setVisible(false);
-
-        Table dialogTable = new Table();
-        dialogTable.add(optionBox)
-                .expand()
-                .align(Align.right)
-                .space(8f)
-                .row();
-        dialogTable.add(dialogueBox)
-                .expand()
-                .align(Align.bottom)
-                .space(8f)
-                .row();
-        tableRoot.add(dialogTable).expand().align(Align.bottom);
     }
 
     private void initDialogues() {

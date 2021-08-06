@@ -1,7 +1,13 @@
 package com.cenfo.cenfomon.deskModule.desktop.Controllers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cenfo.cenfomon.deskModule.desktop.dialogues.Dialogue;
 import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
 import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueTraverser;
@@ -12,14 +18,47 @@ import com.cenfo.cenfomon.deskModule.desktop.ui.OptionBox;
 public class DialogueController extends InputAdapter {
 
     private DialogueTraverser traverser;
+
+    private Stage uiStage;
+    private Table tableRoot;
     private DialogueBox dialogueBox;
     private OptionBox optionBox;
     private Dialogue dialogue;
+    private Skin gameSkin;
 
-    public DialogueController(DialogueBox box, OptionBox optionBox, Dialogue dialogue) {
-        this.dialogueBox = box;
-        this.optionBox = optionBox;
-        this.dialogue = dialogue;
+    public DialogueController(Skin gameSkin) {
+        this.gameSkin = gameSkin;
+        dialogue = new Dialogue();
+        initUI();
+    }
+
+    private void initUI() {
+        uiStage = new Stage(new ScreenViewport());
+        int uiScale = 2;
+        uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
+
+        tableRoot = new Table();
+        tableRoot.setFillParent(true);
+        uiStage.addActor(tableRoot);
+
+        dialogueBox = new DialogueBox(gameSkin);
+        dialogueBox.setVisible(false);
+
+        optionBox = new OptionBox(gameSkin);
+        optionBox.setVisible(false);
+
+        Table dialogTable = new Table();
+        dialogTable.add(optionBox)
+                .expand()
+                .align(Align.right)
+                .space(8f)
+                .row();
+        dialogTable.add(dialogueBox)
+                .expand()
+                .align(Align.bottom)
+                .space(8f)
+                .row();
+        tableRoot.add(dialogTable).expand().align(Align.bottom);
     }
 
     @Override
@@ -110,5 +149,9 @@ public class DialogueController extends InputAdapter {
 
     public boolean isDialogueShowing() {
         return dialogueBox.isVisible();
+    }
+
+    public Table getTableRoot() {
+        return tableRoot;
     }
 }

@@ -24,7 +24,7 @@ public class GameScreenRenderer {
     private TextureAtlas houseAtlas;
     private Sprite houseRegion;
     private Sprite coinSprite;
-   private BitmapFont coinCounterFont;
+    private BitmapFont coinCounterFont;
 
     public GameScreenRenderer(AssetManager assetManager, World world, SpriteBatch batch) {
         this.assetManager = assetManager;

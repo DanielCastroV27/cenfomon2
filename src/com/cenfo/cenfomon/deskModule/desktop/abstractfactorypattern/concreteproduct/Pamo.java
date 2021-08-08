@@ -10,12 +10,9 @@ public class Pamo extends AbstractCenfomon {
     public Pamo() {
         super();
         setType(CenfomonType.ELECTRIC);
+        setName("Pamo");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/pamo.png")));
 
     }
 
-    @Override
-    public String getName() {
-        return "Pamo";
-    }
 }

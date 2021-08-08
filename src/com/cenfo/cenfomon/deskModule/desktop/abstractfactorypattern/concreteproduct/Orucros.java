@@ -11,11 +11,8 @@ public class Orucros extends AbstractCenfomon {
         super();
         setType(CenfomonType.PLANT);
         setSecondType(CenfomonType.BUG);
+        setName("Orucros");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/orucros.png")));
     }
 
-    @Override
-    public String getName() {
-        return "Orucros";
-    }
 }

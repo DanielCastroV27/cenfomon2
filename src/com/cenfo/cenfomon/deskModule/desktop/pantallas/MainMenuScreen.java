@@ -3,6 +3,8 @@ package com.cenfo.cenfomon.deskModule.desktop.pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.TileMap;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.FenixLuna;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 
 public class MainMenuScreen extends AbstractScreen{
@@ -40,6 +42,11 @@ public class MainMenuScreen extends AbstractScreen{
     }
 
     @Override
+    public TileMap getMap() {
+        return null;
+    }
+
+    @Override
     public void show() {
 
     }
@@ -59,7 +66,8 @@ public class MainMenuScreen extends AbstractScreen{
 
 
         if(mouseClickedPlayButton(playButtonX)) {
-            this.game.setScreen(new GameScreen(game));
+            //this.game.setScreen(new GameScreen(game));
+            game.setScreen(new BattleScreen(game, new FenixLuna(), BattleType.TRAINING));
         }
 
         if(mouseClickedExitButton(exitButtonX)) {

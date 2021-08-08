@@ -10,11 +10,7 @@ public class Ebren extends AbstractCenfomon {
     public Ebren() {
         super();
         setType(CenfomonType.FLYING);
+        setName("Ebren");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/ebren.png")));
-    }
-
-    @Override
-    public String getName() {
-        return "Ebren";
     }
 }

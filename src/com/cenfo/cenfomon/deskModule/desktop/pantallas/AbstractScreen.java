@@ -1,12 +1,15 @@
 package com.cenfo.cenfomon.deskModule.desktop.pantallas;
 
 import com.badlogic.gdx.Screen;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.TileMap;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 
 public abstract class AbstractScreen implements Screen {
     public AbstractScreen(Juego j){
 
     }
+    public abstract TileMap getMap();
+
     @Override
     public abstract void show();
 

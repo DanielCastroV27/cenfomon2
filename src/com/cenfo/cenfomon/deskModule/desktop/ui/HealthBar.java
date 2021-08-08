@@ -49,7 +49,7 @@ public class HealthBar extends Widget {
         int padTop = 2;
         int padBottom = 2;
 
-        float hpWidth = (hpAmount / 50) * (hp_bar.getMinWidth() - padLeft - padRight);
+        float hpWidth = (hpAmount / 100) * (hp_bar.getMinWidth() - padLeft - padRight);
 
         Drawable hpColor = null;
 
@@ -61,25 +61,25 @@ public class HealthBar extends Widget {
             hpColor = red;
         }
 
-        hp_left.draw(batch, this.getX(), this.getY(), hp_left.getMinWidth() * 2, hp_left.getMinHeight() * 2);
+        hp_left.draw(batch, this.getX(), this.getY(), hp_left.getMinWidth(), hp_left.getMinHeight());
 
-        background_hpbar.draw(batch, this.getX() + (hp_left.getMinWidth() * 2) + padLeft, this.getY() + padBottom,
-                (hp_bar.getMinWidth() * 2) - padRight - padLeft, (hp_bar.getMinHeight() * 2) - padTop-padBottom);
+        background_hpbar.draw(batch, this.getX() + hp_left.getMinWidth() + padLeft, this.getY() + padBottom,
+                hp_bar.getMinWidth() - padRight - padLeft, hp_bar.getMinHeight() - padTop-padBottom);
 
-        hpColor.draw(batch, this.getX() + (hp_left.getMinWidth() * 2) + padLeft, this.getY() + padBottom,
-                hpWidth, (hp_bar.getMinHeight() * 2)- padTop - padBottom);
+        hpColor.draw(batch, this.getX() + hp_left.getMinWidth() + padLeft, this.getY() + padBottom,
+                hpWidth, hp_bar.getMinHeight() - padTop - padBottom);
 
-        hp_bar.draw(batch, this.getX() + (hp_left.getMinWidth() * 2), this.getY(), hp_bar.getMinWidth() * 2, hp_bar.getMinHeight() * 2);
+        hp_bar.draw(batch, this.getX() + hp_left.getMinWidth(), this.getY(), hp_bar.getMinWidth(), hp_bar.getMinHeight());
     }
 
     @Override
     public float getMinHeight() {
-        return hp_left.getMinHeight() * 2;
+        return hp_left.getMinHeight();
     }
 
     @Override
     public float getMinWidth() {
-        return (hp_left.getMinWidth() + hp_bar.getMinWidth()) * 2;
+        return hp_left.getMinWidth() + hp_bar.getMinWidth();
     }
 
     public void updateHpAmount(int hp) {

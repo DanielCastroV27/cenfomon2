@@ -10,11 +10,7 @@ public class Corder extends AbstractCenfomon {
     public Corder() {
         super();
         setType(CenfomonType.NORMAL);
+        setName("Corder");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/corder.png")));
-    }
-
-    @Override
-    public String getName() {
-        return "Corder";
     }
 }

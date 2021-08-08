@@ -30,6 +30,7 @@ public class Actor implements YSortable {
     //Gameplay attributes
     private AbstractCenfomon firstCenfomon;
     private int coins = 1200;
+    private boolean firstTraining;
     private List<AbstractCenfomon> cenfomonList;
 
     public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
@@ -43,6 +44,7 @@ public class Actor implements YSortable {
         this.state = ACTOR_STATE.STANDING;
         this.facingDirection = DIRECCION.SUR;
         this.firstCenfomon = null;
+        firstTraining = false;
         this.cenfomonList = new ArrayList<>(3);
     }
 
@@ -185,6 +187,14 @@ public class Actor implements YSortable {
 
     public void setCoins(int coins) {
         this.coins = coins;
+    }
+
+    public boolean isFirstTraining() {
+        return firstTraining;
+    }
+
+    public void setFirstTraining(boolean firstTraining) {
+        this.firstTraining = firstTraining;
     }
 
     @Override

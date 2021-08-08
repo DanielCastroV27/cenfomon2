@@ -9,12 +9,8 @@ public class Baji extends AbstractCenfomon {
 
     public Baji() {
         super();
+        super.setName("Baji");
         setType(CenfomonType.BUG);
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/baji.png")));
-    }
-
-    @Override
-    public String getName() {
-        return "Baji";
     }
 }

@@ -55,6 +55,11 @@ public class GameScreen extends AbstractScreen {
     }
 
     @Override
+    public TileMap getMap() {
+        return this.world.getMap();
+    }
+
+    @Override
     public void show() {
         Gdx.input.setInputProcessor(playerController);
     }
@@ -104,8 +109,8 @@ public class GameScreen extends AbstractScreen {
 
         if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
             this.singleton.setPreviousScreen(this);
-            //this.game.setScreen(new OfficeScreen(this.game));
-            this.game.setScreen(new BattleScreen(this.game, new FenixLuna()));
+            this.game.setScreen(new OfficeScreen(this.game));
+            //this.game.setScreen(new BattleScreen(this.game, new FenixLuna()));
         }
     }
 }

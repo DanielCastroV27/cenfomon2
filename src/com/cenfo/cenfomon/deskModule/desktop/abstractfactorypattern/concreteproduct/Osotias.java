@@ -10,11 +10,8 @@ public class Osotias extends AbstractCenfomon {
     public Osotias() {
         super();
         setType(CenfomonType.WATER);
+        setName("Osotias");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/osotias.png")));
     }
 
-    @Override
-    public String getName() {
-        return "Osotias";
-    }
 }

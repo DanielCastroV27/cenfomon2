@@ -3,7 +3,8 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractpro
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 
-public abstract class AbstractCenfomon {
+public abstract class AbstractCenfomon implements Cloneable{
+    private String name;
     private int level;
     private float healthAmount;
     private CenfomonType type;
@@ -16,6 +17,26 @@ public abstract class AbstractCenfomon {
         healthAmount = 100;
         experiencePoints = 0;
         secondType = null;
+    }
+
+    private AbstractCenfomon(String name, int level, float healthAmount, CenfomonType type, CenfomonType secondType, Sprite cenfomonSprite, int experiencePoints) {
+        this.name = name;
+        this.level = level;
+        this.healthAmount = healthAmount;
+        this.type = type;
+        this.secondType = secondType;
+        this.cenfomonSprite = new Sprite(cenfomonSprite);
+        this.experiencePoints = experiencePoints;
+    }
+
+    private AbstractCenfomon(AbstractCenfomon abstractCenfomon) {
+        this.name = abstractCenfomon.name;
+        this.level = abstractCenfomon.level;
+        this.healthAmount = abstractCenfomon.healthAmount;
+        this.type = abstractCenfomon.type;
+        this.secondType = abstractCenfomon.secondType;
+        this.cenfomonSprite = new Sprite(abstractCenfomon.cenfomonSprite);
+        this.experiencePoints = abstractCenfomon.experiencePoints;
     }
 
     public int getLevel() {
@@ -66,5 +87,20 @@ public abstract class AbstractCenfomon {
         this.healthAmount = healthAmount;
     }
 
-    public abstract String getName();
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public final AbstractCenfomon clone() {
+        try {
+            return (AbstractCenfomon) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

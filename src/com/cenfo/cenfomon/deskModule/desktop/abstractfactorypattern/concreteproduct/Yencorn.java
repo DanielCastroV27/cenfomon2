@@ -10,11 +10,8 @@ public class Yencorn extends AbstractCenfomon {
     public Yencorn() {
         super();
         setType(CenfomonType.GHOST);
+        setName("Yencorn");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/yencorn.png")));
     }
 
-    @Override
-    public String getName() {
-        return "Yencorn";
-    }
 }

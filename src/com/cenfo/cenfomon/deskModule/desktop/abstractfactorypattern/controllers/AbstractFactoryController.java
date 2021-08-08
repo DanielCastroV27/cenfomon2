@@ -18,6 +18,22 @@ public class AbstractFactoryController {
             case "fenixluna":
                 cenfomon = factory.create(CenfomonList.FENIXLUNA);
                 break;
+
+            case "orucros":
+                cenfomon = factory.create(CenfomonList.ORUCROS);
+                break;
+
+            case "corder":
+                cenfomon = factory.create(CenfomonList.CORDER);
+                break;
+
+            case "pamo":
+                cenfomon = factory.create(CenfomonList.PAMO);
+                break;
+
+            case "yencorn":
+                cenfomon = factory.create(CenfomonList.YENCORN);
+                break;
         }
 
         return cenfomon;

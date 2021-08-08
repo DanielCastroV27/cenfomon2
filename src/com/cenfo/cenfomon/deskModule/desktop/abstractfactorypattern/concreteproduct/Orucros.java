@@ -5,16 +5,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 
-public class FenixLuna extends AbstractCenfomon {
+public class Orucros extends AbstractCenfomon {
 
-    public FenixLuna() {
+    public Orucros() {
         super();
-        setType(CenfomonType.FIRE);
-        setCenfomonSprite(new Sprite(new Texture("res/un_packed/fenixluna.png")));
+        setType(CenfomonType.PLANT);
+        setSecondType(CenfomonType.BUG);
+        setCenfomonSprite(new Sprite(new Texture("res/un_packed/orucros.png")));
     }
 
     @Override
     public String getName() {
-        return "Fenixluna";
+        return "Orucros";
     }
 }

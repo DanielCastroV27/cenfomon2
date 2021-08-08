@@ -10,7 +10,7 @@ public class Baji extends AbstractCenfomon {
     public Baji() {
         super();
         setType(CenfomonType.BUG);
-        setCenfomonSprite(new Sprite(new Texture("res/un_packed/baji.png")));
+        setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/baji.png")));
     }
 
     @Override

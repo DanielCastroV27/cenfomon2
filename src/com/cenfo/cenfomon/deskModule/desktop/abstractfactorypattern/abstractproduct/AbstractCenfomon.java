@@ -5,6 +5,7 @@ import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.Cenfom
 
 public abstract class AbstractCenfomon {
     private int level;
+    private float healthAmount;
     private CenfomonType type;
     private CenfomonType secondType;
     private Sprite cenfomonSprite;
@@ -12,6 +13,7 @@ public abstract class AbstractCenfomon {
 
     public AbstractCenfomon() {
         level = 0;
+        healthAmount = 100;
         experiencePoints = 0;
         secondType = null;
     }
@@ -54,6 +56,14 @@ public abstract class AbstractCenfomon {
 
     public void setExperiencePoints(int experiencePoints) {
         this.experiencePoints = experiencePoints;
+    }
+
+    public float getHealthAmount() {
+        return healthAmount;
+    }
+
+    public void setHealthAmount(float healthAmount) {
+        this.healthAmount = healthAmount;
     }
 
     public abstract String getName();

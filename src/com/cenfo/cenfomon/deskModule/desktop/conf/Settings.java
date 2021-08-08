@@ -5,5 +5,6 @@ public class Settings {
     public static float SCALE=2f;
     public static float SCALE_TILE_SIZE=TILE_SIZE*SCALE;
     public static float SCALED_TILE_SIZE = TILE_SIZE * SCALE;
+    public static float SCALE_UI = 2f;
 }
 

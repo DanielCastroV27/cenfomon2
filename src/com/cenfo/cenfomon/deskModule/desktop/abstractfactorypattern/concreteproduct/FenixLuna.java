@@ -10,7 +10,7 @@ public class FenixLuna extends AbstractCenfomon {
     public FenixLuna() {
         super();
         setType(CenfomonType.FIRE);
-        setCenfomonSprite(new Sprite(new Texture("res/un_packed/fenixluna.png")));
+        setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/fenixluna.png")));
     }
 
     @Override

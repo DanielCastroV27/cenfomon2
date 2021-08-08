@@ -10,7 +10,7 @@ public class Pamo extends AbstractCenfomon {
     public Pamo() {
         super();
         setType(CenfomonType.ELECTRIC);
-        setCenfomonSprite(new Sprite(new Texture("res/un_packed/panantel.png")));
+        setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/pamo.png")));
 
     }
 

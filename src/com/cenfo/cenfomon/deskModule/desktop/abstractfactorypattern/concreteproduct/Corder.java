@@ -10,7 +10,7 @@ public class Corder extends AbstractCenfomon {
     public Corder() {
         super();
         setType(CenfomonType.NORMAL);
-        setCenfomonSprite(new Sprite(new Texture("res/un_packed/corder.png")));
+        setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/corder.png")));
     }
 
     @Override

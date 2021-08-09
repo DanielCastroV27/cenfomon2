@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.bug.Defense;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.bug.LethalStinger;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.bug.PollenBall;
 
 public class Baji extends AbstractCenfomon {
 
@@ -18,5 +20,7 @@ public class Baji extends AbstractCenfomon {
     @Override
     public void addAbilities() {
         getAbilities().add(new Defense());
+        getAbilities().add(new LethalStinger());
+        getAbilities().add(new PollenBall());
     }
 }

@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.fire.Ember;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.fire.FireRing;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.fire.Flamethrower;
 
 public class FenixLuna extends AbstractCenfomon {
 
@@ -18,6 +20,8 @@ public class FenixLuna extends AbstractCenfomon {
     @Override
     public void addAbilities() {
         getAbilities().add(new Ember());
+        getAbilities().add(new FireRing());
+        getAbilities().add(new Flamethrower());
     }
 
 }

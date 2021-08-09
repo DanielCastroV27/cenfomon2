@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
-import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.Osotias;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
+import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class BattleScreenRenderer {
     private TextureRegion battleTexture;
     private TextureRegion platform;
     private AbstractCenfomon enemyCenfomon;
-    private AbstractCenfomon playerCenfomon = new Osotias();
+    private AbstractCenfomon playerCenfomon;
 
     //Scene UI
     private final int platformWidth = 200;
@@ -28,6 +28,7 @@ public class BattleScreenRenderer {
     public BattleScreenRenderer(SpriteBatch batch, AbstractCenfomon cenfomon) {
         this.batch = batch;
         enemyCenfomon = cenfomon;
+        playerCenfomon = Singleton.getInstance().getCurrentPlayer().getFirstCenfomon();
         battleTexture = new TextureRegion(new Texture("res/un_packed/battle/battle-background.png"));
         platform = new TextureRegion(new Texture("res/un_packed/battle/platform.png"));
     }

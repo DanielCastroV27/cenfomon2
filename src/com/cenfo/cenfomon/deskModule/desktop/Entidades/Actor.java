@@ -1,7 +1,6 @@
 package com.cenfo.cenfomon.deskModule.desktop.Entidades;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import com.badlogic.gdx.math.Interpolation;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;

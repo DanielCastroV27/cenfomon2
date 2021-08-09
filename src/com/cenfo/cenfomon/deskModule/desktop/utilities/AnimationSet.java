@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.DIRECCION;
 
-
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;

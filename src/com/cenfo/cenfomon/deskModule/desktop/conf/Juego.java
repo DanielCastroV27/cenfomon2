@@ -3,15 +3,12 @@ package com.cenfo.cenfomon.deskModule.desktop.conf;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.cenfo.cenfomon.deskModule.desktop.pantallas.GameScreen;
-import com.badlogic.gdx.graphics.GL20;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.MainMenuScreen;
-import com.cenfo.cenfomon.deskModule.desktop.pantallas.OfficeScreen;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.SkinGenerator;
 
 

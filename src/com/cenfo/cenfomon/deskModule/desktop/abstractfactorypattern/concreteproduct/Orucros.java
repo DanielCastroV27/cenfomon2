@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.SwirlPetals;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.Thorns;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.Whip;
 
 public class Orucros extends AbstractCenfomon {
@@ -19,6 +21,8 @@ public class Orucros extends AbstractCenfomon {
     @Override
     public void addAbilities() {
         getAbilities().add(new Whip());
+        getAbilities().add(new Thorns());
+        getAbilities().add(new SwirlPetals());
     }
 
 }

@@ -14,10 +14,10 @@ import com.cenfo.cenfomon.deskModule.desktop.Entidades.World;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.WorldObject;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.controllers.AbstractFactoryController;
-import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
-import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
+import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.OfficeScreenRenderer;
+import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 
 import java.awt.geom.Rectangle2D;
 

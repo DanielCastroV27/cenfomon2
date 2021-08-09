@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.GridPoint2;
-import com.cenfo.cenfomon.deskModule.desktop.Entidades.*;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.Actor;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.World;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.WorldObject;
+import com.cenfo.cenfomon.deskModule.desktop.Entidades.YSortable;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Settings;
 

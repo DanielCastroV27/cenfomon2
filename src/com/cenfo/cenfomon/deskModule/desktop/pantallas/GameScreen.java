@@ -1,17 +1,16 @@
 package com.cenfo.cenfomon.deskModule.desktop.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.*;
-
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.cenfo.cenfomon.deskModule.desktop.Controllers.ControllerJugador;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.*;
-import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
-
-import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.FenixLuna;
-import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.GameScreenRenderer;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
+import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 
 import java.awt.geom.Rectangle2D;
 
@@ -110,7 +109,6 @@ public class GameScreen extends AbstractScreen {
         if(bounds.contains(this.player.getWorldX(), this.player.getWorldY())) {
             this.singleton.setPreviousScreen(this);
             this.game.setScreen(new OfficeScreen(this.game));
-            //this.game.setScreen(new BattleScreen(this.game, new FenixLuna()));
         }
     }
 }

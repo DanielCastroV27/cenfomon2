@@ -1,6 +1,5 @@
 package com.cenfo.cenfomon.deskModule.desktop.Entidades;
 
-import java.lang.Math;
 public class TileMap {
     private Tile[][] tiles;
     private int width,height;

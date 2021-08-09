@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
-import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.Osotias;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 import com.cenfo.cenfomon.deskModule.desktop.battle.AI;
 import com.cenfo.cenfomon.deskModule.desktop.ui.OptionBox;
@@ -18,13 +17,15 @@ public class BattleController extends InputAdapter {
 
     private Stage uiStage;
     private Table tableRoot;
-    private AbstractCenfomon playerCenfomon = new Osotias();
+    private AbstractCenfomon playerCenfomon;
     private AbstractCenfomon enemyCenfomon;
     private OptionBox optionBox;
     private Ability lastPlayerAttack;
     private AI ai;
 
-    public BattleController(Skin skin) {
+    public BattleController(Skin skin, AbstractCenfomon playerCenfomon, AbstractCenfomon enemyCenfomon) {
+        this.playerCenfomon = playerCenfomon;
+        this.enemyCenfomon = enemyCenfomon;
         uiStage = new Stage(new ScreenViewport());
         ai = new AI();
         int uiScale = 2;
@@ -95,13 +96,16 @@ public class BattleController extends InputAdapter {
         optionBox.setVisible(true);
     }
 
+    public void stopAttacks() {
+        optionBox.setVisible(false);
+    }
+
     public void enemyAttack() {
         try {
             Thread.sleep(600);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         ai.setEnemyCenfomon(enemyCenfomon);
         ai.setUsedPlayerAbility(lastPlayerAttack);
         ai.setPlayerCenfomon(playerCenfomon);

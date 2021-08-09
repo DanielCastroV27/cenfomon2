@@ -1,22 +1,22 @@
-package com.cenfo.cenfomon.deskModule.desktop.attacks.bug;
+package com.cenfo.cenfomon.deskModule.desktop.attacks.water;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class Defense extends Ability {
+public class AqueousDefense extends Ability {
 
-    public Defense() {
+    public AqueousDefense() {
         super();
-        setAbilityType(CenfomonType.BUG);
-        setDefensePoints(10);
+        setAbilityType(CenfomonType.WATER);
         setHealingPoints(5);
-        setName("Defensa");
+        setDefensePoints(10);
+        setName("Defensa Acuosa");
     }
 
     @Override
     public String getName() {
-        return "Defensa";
+        return "Defensa Acuosa";
     }
 
     @Override

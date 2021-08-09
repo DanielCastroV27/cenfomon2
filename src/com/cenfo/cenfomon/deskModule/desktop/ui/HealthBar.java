@@ -20,13 +20,14 @@ public class HealthBar extends Widget {
     private Drawable hp_left;
     private Drawable hp_bar;
 
-    private STATE state = STATE.IDLE;
-
-    private float timer = 0f;
-    private float animationDuration = 0f;
-
     private final float hpStart = 100;
     private final float hpEnd = 0;
+
+    private int padLeft = 1;
+    private int padRight = 2;
+    private int padTop = 2;
+    private int padBottom = 2;
+    private float hpWidth;
 
     public HealthBar(Skin skin, float hpAmount) {
         super();
@@ -44,12 +45,7 @@ public class HealthBar extends Widget {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        int padLeft = 1;
-        int padRight = 2;
-        int padTop = 2;
-        int padBottom = 2;
-
-        float hpWidth = (hpAmount / 100) * (hp_bar.getMinWidth() - padLeft - padRight);
+        hpWidth = (hpAmount / 100) * (hp_bar.getMinWidth() - padLeft - padRight);
 
         Drawable hpColor = null;
 
@@ -82,8 +78,8 @@ public class HealthBar extends Widget {
         return hp_left.getMinWidth() + hp_bar.getMinWidth();
     }
 
-    public void updateHpAmount(int hp) {
-        this.hpAmount = hp;
-        hpAmount = (int) MathUtils.clamp(hpAmount, 0f, 1f);
+    public void updateHpAmount(float hp) {
+        hpAmount = hp;
+        hpWidth = (hpAmount / 100) * (hp_bar.getMinWidth() - padLeft - padRight);
     }
 }

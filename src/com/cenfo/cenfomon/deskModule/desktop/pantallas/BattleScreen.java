@@ -8,34 +8,41 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.cenfo.cenfomon.deskModule.desktop.Controllers.BattleController;
 import com.cenfo.cenfomon.deskModule.desktop.Controllers.DialogueController;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.TileMap;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.Osotias;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.BattleScreenRenderer;
+import com.cenfo.cenfomon.deskModule.desktop.ui.DetailedStatusBox;
 import com.cenfo.cenfomon.deskModule.desktop.ui.StatusBox;
 
 import java.util.List;
 
-public class BattleScreen extends AbstractScreen{
+public class BattleScreen extends AbstractScreen {
 
     private SpriteBatch batch;
     private BattleScreenRenderer battleScreenRenderer;
     private Juego game;
     private AbstractCenfomon enemyCenfomon;
+    private AbstractCenfomon playerCenfomon = new Osotias();
+    private BattleType battleType;
 
     //UI
     private Stage uiStage;
     private int uiScale = 2;
     private Viewport gameViewport;
 
-    private StatusBox opponentStatus;
+    private DetailedStatusBox opponentStatus;
+    private DetailedStatusBox playerStatus;
 
     private Table statusBoxRoot;
 
     //Controllers
     private DialogueController dialogueController;
+    private BattleController battleController;
     private InputMultiplexer inputMultiplexer;
 
     public BattleScreen(Juego j, AbstractCenfomon cenfomon, BattleType battleType) {
@@ -43,8 +50,12 @@ public class BattleScreen extends AbstractScreen{
         game = j;
         batch = j.batch;
         enemyCenfomon = cenfomon;
+        this.battleType = battleType;
         battleScreenRenderer = new BattleScreenRenderer(batch, cenfomon);
         dialogueController = new DialogueController(j.getSkin());
+        battleController = new BattleController(j.getSkin());
+        battleController.setPlayerCenfomon(playerCenfomon);
+        battleController.setEnemyCenfomon(enemyCenfomon);
 
         uiStage = new Stage(new ScreenViewport());
         uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
@@ -52,13 +63,9 @@ public class BattleScreen extends AbstractScreen{
 
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(0, dialogueController);
-
+        inputMultiplexer.addProcessor(1, battleController);
 
         initUI();
-
-
-
-        initDialogues();
     }
 
     public BattleScreen(Juego j, List<AbstractCenfomon> cenfomons) {
@@ -80,13 +87,21 @@ public class BattleScreen extends AbstractScreen{
     @Override
     public void render(float delta) {
         gameViewport.apply();
-
         batch.begin();
         battleScreenRenderer.render();
         batch.end();
         uiStage.draw();
         dialogueController.update();
         uiStage.act(delta);
+        battle();
+        opponentStatus.getHPBar().updateHpAmount(enemyCenfomon.getHealthAmount());
+        opponentStatus.setHPText((int) enemyCenfomon.getHealthAmount(), 100);
+        playerStatus.getHPBar().updateHpAmount(playerCenfomon.getHealthAmount());
+        playerStatus.setHPText((int) playerCenfomon.getHealthAmount(), 100);
+    }
+
+    private void battle() {
+        battleController.showAttacks();
     }
 
     @Override
@@ -117,21 +132,37 @@ public class BattleScreen extends AbstractScreen{
     }
 
     private void initUI() {
-
         statusBoxRoot = new Table();
         statusBoxRoot.setFillParent(true);
-
         uiStage.addActor(dialogueController.getTableRoot());
+        uiStage.addActor(battleController.getTableRoot());
         uiStage.addActor(statusBoxRoot);
-        opponentStatus = new StatusBox(game.getSkin(), enemyCenfomon);
+
+        opponentStatus = new DetailedStatusBox(game.getSkin(), enemyCenfomon);
+        playerStatus = new DetailedStatusBox(game.getSkin(), new Osotias());
+        statusBoxRoot.add(playerStatus).expand().align(Align.left);
         statusBoxRoot.add(opponentStatus).expand().align(Align.right);
     }
 
     private void initDialogues() {
-        DialogueNode node1 = new DialogueNode("hahaha 1", 0);
-        DialogueNode node2 = new DialogueNode("hahaha 2", 1);
+        if (battleType == BattleType.TRAINING) {
+            trainingDialogues();
+        } else {
+            //TODO: Battle dialogs
+        }
+    }
+
+    private void trainingDialogues() {
+        DialogueNode node1 = new DialogueNode("Escoge un ataque", 0);
+        DialogueNode node2 = new DialogueNode("Lista de ataques:", 1);
+        DialogueNode node3 = new DialogueNode("PUMMMMM!", 2);
+
         dialogueController.makeLinear(node1, node2.getID());
-        dialogueController.addEndNode(node2);
+        dialogueController.addChoice(node2, "Ataque 1", node3.getID());
+        dialogueController.addChoice(node2, "Ataque 2", node3.getID());
+        dialogueController.addChoice(node2, "Ataque 3", node3.getID());
+        dialogueController.addEndNode(node3);
+
         dialogueController.startDialogue();
     }
 }

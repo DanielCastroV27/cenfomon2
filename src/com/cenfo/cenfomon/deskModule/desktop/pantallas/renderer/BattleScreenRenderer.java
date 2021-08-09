@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concreteproduct.Osotias;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class BattleScreenRenderer {
     private TextureRegion battleTexture;
     private TextureRegion platform;
     private AbstractCenfomon enemyCenfomon;
+    private AbstractCenfomon playerCenfomon = new Osotias();
 
     //Scene UI
     private final int platformWidth = 200;
@@ -44,5 +46,6 @@ public class BattleScreenRenderer {
 
         //Cenfomon's sprites
         batch.draw(enemyCenfomon.getCenfomonSprite(), enemyPlatformX - 20, platformY + 5, cenfomonWidth, cenfomonHeight);
+        batch.draw(playerCenfomon.getCenfomonSprite(), playerPlatformX - 20, platformY + 5, cenfomonWidth, cenfomonHeight);
     }
 }

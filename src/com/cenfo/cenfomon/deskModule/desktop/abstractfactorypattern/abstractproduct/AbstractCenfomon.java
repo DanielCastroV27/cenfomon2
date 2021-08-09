@@ -2,41 +2,30 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractpro
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractCenfomon implements Cloneable{
     private String name;
     private int level;
     private float healthAmount;
+    private float defensePoints;
     private CenfomonType type;
     private CenfomonType secondType;
     private Sprite cenfomonSprite;
     private int experiencePoints;
+    private final List<Ability> abilities;
 
     public AbstractCenfomon() {
         level = 0;
         healthAmount = 100;
+        defensePoints = 0;
         experiencePoints = 0;
         secondType = null;
-    }
-
-    private AbstractCenfomon(String name, int level, float healthAmount, CenfomonType type, CenfomonType secondType, Sprite cenfomonSprite, int experiencePoints) {
-        this.name = name;
-        this.level = level;
-        this.healthAmount = healthAmount;
-        this.type = type;
-        this.secondType = secondType;
-        this.cenfomonSprite = new Sprite(cenfomonSprite);
-        this.experiencePoints = experiencePoints;
-    }
-
-    private AbstractCenfomon(AbstractCenfomon abstractCenfomon) {
-        this.name = abstractCenfomon.name;
-        this.level = abstractCenfomon.level;
-        this.healthAmount = abstractCenfomon.healthAmount;
-        this.type = abstractCenfomon.type;
-        this.secondType = abstractCenfomon.secondType;
-        this.cenfomonSprite = new Sprite(abstractCenfomon.cenfomonSprite);
-        this.experiencePoints = abstractCenfomon.experiencePoints;
+        abilities = new ArrayList<>();
+        addAbilities();
     }
 
     public int getLevel() {
@@ -95,6 +84,20 @@ public abstract class AbstractCenfomon implements Cloneable{
         return this.name;
     }
 
+    public float getDefensePoints() {
+        return defensePoints;
+    }
+
+    public List<Ability> getAbilities() {
+        return abilities;
+    }
+
+    public void setDefensePoints(float defensePoints) {
+        this.defensePoints = defensePoints;
+    }
+
+    public abstract void addAbilities();
+
     @Override
     public final AbstractCenfomon clone() {
         try {
@@ -103,4 +106,6 @@ public abstract class AbstractCenfomon implements Cloneable{
             throw new AssertionError();
         }
     }
+
+
 }

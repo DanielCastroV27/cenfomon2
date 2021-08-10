@@ -1,26 +1,27 @@
-package com.cenfo.cenfomon.deskModule.desktop.attacks.electric;
+package com.cenfo.cenfomon.deskModule.desktop.attacks.water;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class ElectricBall extends Ability {
+public class Surf extends Ability {
 
-    public ElectricBall() {
+    public Surf() {
         super();
-        setAbilityType(CenfomonType.ELECTRIC);
-        setDamagePoints(20);
-        setName("Bola electrica");
+        setAbilityType(CenfomonType.WATER);
+        setDamagePoints(15);
+        setDefensePoints(15);
+        setName("Bomba de agua");
     }
 
     @Override
     public String getName() {
-        return "Bola electrica";
+        return "Surf";
     }
 
     @Override
     public void action(AbstractCenfomon current, AbstractCenfomon enemy) {
-        Abilities.damage(current, enemy, this);
+        Abilities.defenseAndDamage(current, enemy, this);
     }
 }

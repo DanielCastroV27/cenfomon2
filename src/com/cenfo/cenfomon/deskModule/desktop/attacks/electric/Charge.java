@@ -5,22 +5,22 @@ import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.Cenfom
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class ElectricBall extends Ability {
+public class Charge extends Ability {
 
-    public ElectricBall() {
+    public Charge() {
         super();
         setAbilityType(CenfomonType.ELECTRIC);
-        setDamagePoints(20);
-        setName("Bola electrica");
+        setDefensePoints(20);
+        setName("Carga");
     }
 
     @Override
     public String getName() {
-        return "Bola electrica";
+        return "Carga";
     }
 
     @Override
     public void action(AbstractCenfomon current, AbstractCenfomon enemy) {
-        Abilities.damage(current, enemy, this);
+        Abilities.defense(current, enemy, this);
     }
 }

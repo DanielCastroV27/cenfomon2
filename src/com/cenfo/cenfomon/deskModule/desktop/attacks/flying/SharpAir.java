@@ -1,22 +1,22 @@
-package com.cenfo.cenfomon.deskModule.desktop.attacks.electric;
+package com.cenfo.cenfomon.deskModule.desktop.attacks.flying;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class ElectricBall extends Ability {
+public class SharpAir extends Ability {
 
-    public ElectricBall() {
+    public SharpAir() {
         super();
-        setAbilityType(CenfomonType.ELECTRIC);
-        setDamagePoints(20);
-        setName("Bola electrica");
+        setAbilityType(CenfomonType.FLYING);
+        setDamagePoints(25);
+        setName("Aire afilado");
     }
 
     @Override
     public String getName() {
-        return "Bola electrica";
+        return "Aire afilado";
     }
 
     @Override

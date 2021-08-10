@@ -1,22 +1,22 @@
-package com.cenfo.cenfomon.deskModule.desktop.attacks.electric;
+package com.cenfo.cenfomon.deskModule.desktop.attacks.plant;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class ElectricBall extends Ability {
+public class DrainageSeeds extends Ability {
 
-    public ElectricBall() {
+    public DrainageSeeds() {
         super();
-        setAbilityType(CenfomonType.ELECTRIC);
-        setDamagePoints(20);
-        setName("Bola electrica");
+        setAbilityType(CenfomonType.PLANT);
+        setDamagePoints(25);
+        setName("Semillas drenaje");
     }
 
     @Override
     public String getName() {
-        return "Bola electrica";
+        return "Semillas drenaje";
     }
 
     @Override

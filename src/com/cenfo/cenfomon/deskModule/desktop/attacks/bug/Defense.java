@@ -2,6 +2,7 @@ package com.cenfo.cenfomon.deskModule.desktop.attacks.bug;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
+import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
 public class Defense extends Ability {
@@ -21,7 +22,6 @@ public class Defense extends Ability {
 
     @Override
     public void action(AbstractCenfomon current, AbstractCenfomon enemy) {
-        current.setHealthAmount(current.getHealthAmount() + getHealingPoints());
-        current.setDefensePoints(current.getDefensePoints() + getDefensePoints());
+        Abilities.defenseAndHealing(current, enemy, this);
     }
 }

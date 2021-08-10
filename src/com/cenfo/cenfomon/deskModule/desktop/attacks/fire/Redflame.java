@@ -1,22 +1,22 @@
-package com.cenfo.cenfomon.deskModule.desktop.attacks.electric;
+package com.cenfo.cenfomon.deskModule.desktop.attacks.fire;
 
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Abilities;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.Ability;
 
-public class ElectricBall extends Ability {
+public class Redflame extends Ability {
 
-    public ElectricBall() {
+    public Redflame() {
         super();
-        setAbilityType(CenfomonType.ELECTRIC);
-        setDamagePoints(20);
-        setName("Bola electrica");
+        setAbilityType(CenfomonType.FIRE);
+        setDamagePoints(25);
+        setName("Llama roja");
     }
 
     @Override
     public String getName() {
-        return "Bola electrica";
+        return "Llama roja";
     }
 
     @Override

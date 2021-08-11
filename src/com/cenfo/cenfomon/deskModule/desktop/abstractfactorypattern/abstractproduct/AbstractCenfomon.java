@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractCenfomon implements Cloneable{
+    private int id;
     private String name;
     private int level;
     private float healthAmount;
@@ -18,7 +19,8 @@ public abstract class AbstractCenfomon implements Cloneable{
     private int experiencePoints;
     private final List<Ability> abilities;
 
-    public AbstractCenfomon() {
+    public AbstractCenfomon(int id) {
+        this.id = id;
         level = 0;
         healthAmount = 100;
         defensePoints = 0;
@@ -96,7 +98,17 @@ public abstract class AbstractCenfomon implements Cloneable{
         this.defensePoints = defensePoints;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public abstract void addAbilities();
+
+    public abstract AbstractCenfomon levelUp();
 
     @Override
     public final AbstractCenfomon clone() {

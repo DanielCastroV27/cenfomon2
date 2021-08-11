@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.Spears;
 public class Caporucros extends Decorator {
 
     public Caporucros(AbstractCenfomon cenfomon) {
-        super();
+        super(8);
         this.cenfomon = cenfomon;
         setType(CenfomonType.PLANT);
         setSecondType(CenfomonType.BUG);
@@ -26,5 +26,10 @@ public class Caporucros extends Decorator {
         getAbilities().add(new DragonWhip());
         getAbilities().add(new DrainageSeeds());
         getAbilities().add(new Spears());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

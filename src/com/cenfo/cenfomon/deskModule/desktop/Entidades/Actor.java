@@ -3,6 +3,8 @@ package com.cenfo.cenfomon.deskModule.desktop.Entidades;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteObserver;
+import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteSubject;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class Actor implements YSortable {
     private AbstractCenfomon firstCenfomon;
     private int coins = 1200;
     private boolean firstTraining;
-    private List<AbstractCenfomon> cenfomonList;
+    private final List<AbstractCenfomon> cenfomonList;
 
     public Actor(TileMap map, int x, int y, AnimationSet animaciones) {
         this.map = map;
@@ -44,8 +46,10 @@ public class Actor implements YSortable {
         this.facingDirection = DIRECCION.SUR;
         this.firstCenfomon = null;
         firstTraining = false;
-        this.cenfomonList = new ArrayList<>(3);
+        this.cenfomonList = new ArrayList<>();
     }
+
+
 
     public float getWorldX() {
         return worldX;
@@ -144,7 +148,12 @@ public class Actor implements YSortable {
     }
 
     public void setFirstCenfomon(AbstractCenfomon firstCenfomon) {
+        this.cenfomonList.add(firstCenfomon);
         this.firstCenfomon = firstCenfomon;
+    }
+
+    public void levelUp(AbstractCenfomon cenfomon) {
+        AbstractCenfomon decoratedCenfomon = cenfomon.levelUp();
     }
 
     public TileMap getMap() {

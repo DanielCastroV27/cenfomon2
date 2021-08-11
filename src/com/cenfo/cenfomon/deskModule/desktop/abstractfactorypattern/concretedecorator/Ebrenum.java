@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.flying.SharpAir;
 public class Ebrenum extends Decorator {
 
     public Ebrenum(AbstractCenfomon cenfomon) {
-        super();
+        super(18);
         this.cenfomon = cenfomon;
         setType(CenfomonType.FLYING);
         setName("Ebrenum");
@@ -25,5 +25,10 @@ public class Ebrenum extends Decorator {
         getAbilities().add(new ColdAir());
         getAbilities().add(new FastAttack());
         getAbilities().add(new SharpAir());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

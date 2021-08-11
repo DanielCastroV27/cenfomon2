@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.normal.Pull;
 public class Corderion extends Decorator {
 
     public Corderion(AbstractCenfomon cenfomon) {
-        super();
+        super(11);
         this.cenfomon = cenfomon;
         setType(CenfomonType.NORMAL);
         setName("Corderion");
@@ -25,5 +25,10 @@ public class Corderion extends Decorator {
         getAbilities().add(new DefenseIncrease());
         getAbilities().add(new Lash());
         getAbilities().add(new Pull());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.electric.ParabolaCharge;
 public class Monan extends Decorator {
 
     public Monan(AbstractCenfomon cenfomon) {
-        super();
+        super(13);
         this.cenfomon = cenfomon;
         setType(CenfomonType.ELECTRIC);
         setName("Monan");
@@ -25,5 +25,10 @@ public class Monan extends Decorator {
         getAbilities().add(new Charge());
         getAbilities().add(new ParabolaCharge());
         getAbilities().add(new ElectricField());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

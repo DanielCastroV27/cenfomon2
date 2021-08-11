@@ -3,6 +3,7 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretepro
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretedecorator.Caporucros;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.SwirlPetals;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.Thorns;
@@ -11,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.plant.Whip;
 public class Orucros extends AbstractCenfomon {
 
     public Orucros() {
-        super();
+        super(7);
         setType(CenfomonType.PLANT);
         setSecondType(CenfomonType.BUG);
         setName("Orucros");
@@ -23,6 +24,11 @@ public class Orucros extends AbstractCenfomon {
         getAbilities().add(new Whip());
         getAbilities().add(new Thorns());
         getAbilities().add(new SwirlPetals());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return new Caporucros(this);
     }
 
 }

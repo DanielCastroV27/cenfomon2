@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.water.Waterjet;
 public class Kotias extends Decorator {
 
     public Kotias(AbstractCenfomon cenfomon) {
-        super();
+        super(2);
         this.cenfomon = cenfomon;
         setType(CenfomonType.WATER);
         setName("Kotias");
@@ -25,5 +25,10 @@ public class Kotias extends Decorator {
         getAbilities().add(new Surf());
         getAbilities().add(new Waterjet());
         getAbilities().add(new WaterBomb());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

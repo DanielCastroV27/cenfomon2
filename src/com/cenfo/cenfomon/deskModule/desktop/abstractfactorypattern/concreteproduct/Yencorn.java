@@ -3,6 +3,7 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretepro
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretedecorator.Yencornio;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.ghost.Ace;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.ghost.DarkClaw;
@@ -11,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.ghost.Shadow;
 public class Yencorn extends AbstractCenfomon {
 
     public Yencorn() {
-        super();
+        super(15);
         setType(CenfomonType.GHOST);
         setName("Yencorn");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/yencorn.png")));
@@ -22,6 +23,11 @@ public class Yencorn extends AbstractCenfomon {
         getAbilities().add(new Ace());
         getAbilities().add(new DarkClaw());
         getAbilities().add(new Shadow());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return new Yencornio(this);
     }
 
 }

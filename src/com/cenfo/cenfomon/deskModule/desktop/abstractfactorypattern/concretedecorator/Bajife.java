@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.bug.LifeSteal;
 public class Bajife extends Decorator {
 
     public Bajife(AbstractCenfomon cenfomon) {
-        super();
+        super(20);
         this.cenfomon = cenfomon;
         super.setName("Bajife");
         setType(CenfomonType.BUG);
@@ -25,5 +25,10 @@ public class Bajife extends Decorator {
         getAbilities().add(new Claw());
         getAbilities().add(new FuryCut());
         getAbilities().add(new LifeSteal());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

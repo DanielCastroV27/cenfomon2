@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.fire.Wildfire;
 public class SalamLuna extends Decorator {
 
     public SalamLuna(AbstractCenfomon cenfomon) {
-        super();
+        super(5);
         this.cenfomon = cenfomon;
         setType(CenfomonType.FIRE);
         setName("Salamluna");
@@ -25,5 +25,10 @@ public class SalamLuna extends Decorator {
         getAbilities().add(new Redflame());
         getAbilities().add(new Whiteflame());
         getAbilities().add(new Wildfire());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

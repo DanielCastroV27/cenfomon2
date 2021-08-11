@@ -3,6 +3,7 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretepro
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretedecorator.Monan;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.electric.ElectricBall;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.electric.MagneticDefense;
@@ -11,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.electric.StaticShock;
 public class Pamo extends AbstractCenfomon {
 
     public Pamo() {
-        super();
+        super(12);
         setType(CenfomonType.ELECTRIC);
         setName("Pamo");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/pamo.png")));
@@ -22,6 +23,11 @@ public class Pamo extends AbstractCenfomon {
         getAbilities().add(new StaticShock());
         getAbilities().add(new ElectricBall());
         getAbilities().add(new MagneticDefense());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return new Monan(this);
     }
 
 }

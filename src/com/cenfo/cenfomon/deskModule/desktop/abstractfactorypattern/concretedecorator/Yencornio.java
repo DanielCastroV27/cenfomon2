@@ -12,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.ghost.ShadowStrike;
 public class Yencornio extends Decorator {
 
     public Yencornio(AbstractCenfomon cenfomon) {
-        super();
+        super(16);
         this.cenfomon = cenfomon;
         setType(CenfomonType.GHOST);
         setName("Yencornio");
@@ -25,5 +25,10 @@ public class Yencornio extends Decorator {
         getAbilities().add(new Curse());
         getAbilities().add(new DarkBomb());
         getAbilities().add(new ShadowStrike());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return null;
     }
 }

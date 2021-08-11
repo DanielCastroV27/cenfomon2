@@ -3,6 +3,7 @@ package com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretepro
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.concretedecorator.Ebrenum;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.enums.CenfomonType;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.flying.Acrobatic;
 import com.cenfo.cenfomon.deskModule.desktop.attacks.flying.Flight;
@@ -11,7 +12,7 @@ import com.cenfo.cenfomon.deskModule.desktop.attacks.flying.WingAttack;
 public class Ebren extends AbstractCenfomon {
 
     public Ebren() {
-        super();
+        super(17);
         setType(CenfomonType.FLYING);
         setName("Ebren");
         setCenfomonSprite(new Sprite(new Texture("res/un_packed/cenfomon/ebren.png")));
@@ -22,5 +23,10 @@ public class Ebren extends AbstractCenfomon {
         getAbilities().add(new Flight());
         getAbilities().add(new Acrobatic());
         getAbilities().add(new WingAttack());
+    }
+
+    @Override
+    public AbstractCenfomon levelUp() {
+        return new Ebrenum(this);
     }
 }

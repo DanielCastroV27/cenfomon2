@@ -5,6 +5,10 @@ import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractprod
 public abstract class Decorator extends AbstractCenfomon {
     protected AbstractCenfomon cenfomon;
 
+    public Decorator(int id) {
+        super(id);
+    }
+
     public AbstractCenfomon getCenfomon() {
         return cenfomon;
     }

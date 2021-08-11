@@ -1,7 +1,8 @@
 package com.cenfo.cenfomon.deskModule.desktop.observer.interfaces;
 
-import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
+import com.cenfo.cenfomon.deskModule.desktop.Controllers.BattleController;
+import com.cenfo.cenfomon.deskModule.desktop.Controllers.DialogueController;
 
 public interface Observer {
-    void update(AbstractCenfomon cenfomon);
+    void update(DialogueController dialogueController, BattleController battleController);
 }

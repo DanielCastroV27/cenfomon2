@@ -144,7 +144,6 @@ public class GameScreenRenderer {
 
     private void addCoinCounter() {
         batch.draw(coinSprite, 50, (Juego.HEIGHT - 60), 32, 32);
-
         coinCounterFont.setColor(Color.YELLOW);
         coinCounterFont.draw(batch, String.valueOf(world.getMainActor().getCoins()), 100, (Juego.HEIGHT - 40));
     }

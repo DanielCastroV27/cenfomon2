@@ -21,6 +21,6 @@ public class Grip extends Ability {
 
     @Override
     public void action(AbstractCenfomon current, AbstractCenfomon enemy) {
-        Abilities.defense(current, enemy, this);
+        Abilities.damage(current, enemy, this);
     }
 }

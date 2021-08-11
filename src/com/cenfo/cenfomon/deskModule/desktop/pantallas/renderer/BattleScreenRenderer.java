@@ -7,8 +7,6 @@ import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractprod
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
 
-import java.util.List;
-
 public class BattleScreenRenderer {
     private SpriteBatch batch;
     private TextureRegion battleTexture;
@@ -29,12 +27,6 @@ public class BattleScreenRenderer {
         this.batch = batch;
         enemyCenfomon = cenfomon;
         playerCenfomon = Singleton.getInstance().getCurrentPlayer().getFirstCenfomon();
-        battleTexture = new TextureRegion(new Texture("res/un_packed/battle/battle-background.png"));
-        platform = new TextureRegion(new Texture("res/un_packed/battle/platform.png"));
-    }
-
-    public BattleScreenRenderer(SpriteBatch batch, List<AbstractCenfomon> cenfomons) {
-        this.batch = batch;
         battleTexture = new TextureRegion(new Texture("res/un_packed/battle/battle-background.png"));
         platform = new TextureRegion(new Texture("res/un_packed/battle/platform.png"));
     }

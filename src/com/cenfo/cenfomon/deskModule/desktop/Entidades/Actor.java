@@ -3,8 +3,6 @@ package com.cenfo.cenfomon.deskModule.desktop.Entidades;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
-import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteObserver;
-import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteSubject;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.AnimationSet;
 
 import java.util.ArrayList;
@@ -71,6 +69,10 @@ public class Actor implements YSortable {
         WALKING,
         STANDING,
         ;
+    }
+
+    public void addCenfomon(AbstractCenfomon cenfomon) {
+        cenfomonList.add(cenfomon);
     }
 
     public void Actualizar(float delta) {
@@ -154,6 +156,12 @@ public class Actor implements YSortable {
 
     public void levelUp(AbstractCenfomon cenfomon) {
         AbstractCenfomon decoratedCenfomon = cenfomon.levelUp();
+        replace(cenfomon, decoratedCenfomon);
+    }
+
+    private void replace(AbstractCenfomon original, AbstractCenfomon decorated) {
+        int index = cenfomonList.indexOf(original);
+        cenfomonList.set(index, decorated);
     }
 
     public TileMap getMap() {

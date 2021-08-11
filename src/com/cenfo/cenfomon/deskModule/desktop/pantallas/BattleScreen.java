@@ -13,12 +13,11 @@ import com.cenfo.cenfomon.deskModule.desktop.Controllers.DialogueController;
 import com.cenfo.cenfomon.deskModule.desktop.Entidades.TileMap;
 import com.cenfo.cenfomon.deskModule.desktop.abstractfactorypattern.abstractproduct.AbstractCenfomon;
 import com.cenfo.cenfomon.deskModule.desktop.conf.Juego;
-import com.cenfo.cenfomon.deskModule.desktop.dialogues.DialogueNode;
+import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteObserver;
+import com.cenfo.cenfomon.deskModule.desktop.observer.concrete.ConcreteSubject;
 import com.cenfo.cenfomon.deskModule.desktop.pantallas.renderer.BattleScreenRenderer;
 import com.cenfo.cenfomon.deskModule.desktop.ui.DetailedStatusBox;
 import com.cenfo.cenfomon.deskModule.desktop.utilities.singleton.Singleton;
-
-import java.util.List;
 
 public class BattleScreen extends AbstractScreen {
 
@@ -43,7 +42,7 @@ public class BattleScreen extends AbstractScreen {
     private DialogueController dialogueController;
     private BattleController battleController;
     private InputMultiplexer inputMultiplexer;
-    private boolean endBattle;
+    private ConcreteSubject concreteSubject;
 
     public BattleScreen(Juego j, AbstractCenfomon cenfomon, BattleType battleType) {
         super(j);
@@ -55,7 +54,6 @@ public class BattleScreen extends AbstractScreen {
         battleScreenRenderer = new BattleScreenRenderer(batch, cenfomon);
         dialogueController = new DialogueController(j.getSkin());
         battleController = new BattleController(j.getSkin(), playerCenfomon, enemyCenfomon);
-        endBattle = false;
 
         uiStage = new Stage(new ScreenViewport());
         uiStage.getViewport().update(Gdx.graphics.getWidth() / uiScale, Gdx.graphics.getHeight() / uiScale, true);
@@ -65,14 +63,10 @@ public class BattleScreen extends AbstractScreen {
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(0, dialogueController);
         inputMultiplexer.addProcessor(1, battleController);
+        concreteSubject = new ConcreteSubject(dialogueController, battleController);
+        concreteSubject.addObserver(new ConcreteObserver("Battle observer"));
 
         initUI();
-    }
-
-    public BattleScreen(Juego j, List<AbstractCenfomon> cenfomons) {
-        super(j);
-        batch = j.batch;
-        battleScreenRenderer = new BattleScreenRenderer(batch, cenfomons);
     }
 
     @Override
@@ -94,17 +88,8 @@ public class BattleScreen extends AbstractScreen {
         uiStage.draw();
         dialogueController.update();
         uiStage.act(delta);
-        battle();
+        concreteSubject.isBattleFinished();
         updateHpBars();
-        isEndBattle();
-    }
-
-    private void battle() {
-        if(!endBattle) {
-            battleController.showAttacks();
-        } else {
-            battleController.stopAttacks();
-        }
     }
 
     private void updateHpBars() {
@@ -112,28 +97,6 @@ public class BattleScreen extends AbstractScreen {
         opponentStatus.setHPText((int) enemyCenfomon.getHealthAmount(), 100);
         playerStatus.getHPBar().updateHpAmount(playerCenfomon.getHealthAmount());
         playerStatus.setHPText((int) playerCenfomon.getHealthAmount(), 100);
-    }
-
-    private void isEndBattle() {
-        if(playerCenfomon.getHealthAmount() <= 0) {
-            winnerDialogues();
-            endBattle = true;
-        } else if(enemyCenfomon.getHealthAmount() <= 0) {
-            loserDialogues();
-            endBattle = true;
-        }
-    }
-
-    private void winnerDialogues() {
-        DialogueNode node1 = new DialogueNode("Felicidades, haz ganado!", 0);
-        dialogueController.addEndNode(node1);
-        dialogueController.startDialogue();
-    }
-
-    private void loserDialogues() {
-        DialogueNode node1 = new DialogueNode("Haz perdido, intentalo mas tarde.", 0);
-        dialogueController.addEndNode(node1);
-        dialogueController.startDialogue();
     }
 
     @Override
